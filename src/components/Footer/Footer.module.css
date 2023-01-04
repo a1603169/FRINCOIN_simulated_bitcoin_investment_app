@@ -1,0 +1,63 @@
+@import "../../reset/reset.css";
+
+.footer_container {
+  background-color: rgb(31 29 29);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.footer_content {
+  padding: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.footer_logos_container {
+  display: flex;
+  justify-content: center;
+}
+
+.footer_logo {
+  display: flex;
+  color: white;
+  justify-content: center;
+  align-items: center;
+
+  margin: 10px;
+  transition: 0.3s;
+}
+
+.footer_logo .external_url {
+  border-radius: 15px;
+  width: 30px;
+  height: 30px;
+  color: white;
+  text-align: center;
+  align-self: center;
+  text-decoration: none;
+  overflow: hidden;
+}
+
+/* .footer_logo:hover {
+  border-color: rgb(151, 90, 208);
+} */
+.external_url:hover {
+  border-color: rgb(151, 90, 208);
+  color: rgb(151, 90, 208);
+}
+
+.logo_image {
+  width: 30px;
+  height: 30px;
+  opacity: 0.5;
+  transition: 0.3s;
+}
+
+.logo_image:hover {
+  opacity: 1;
+}
+
+.copy_write {
+  color: white;
+  font-size: 18px;
+  text-align: center;
+}

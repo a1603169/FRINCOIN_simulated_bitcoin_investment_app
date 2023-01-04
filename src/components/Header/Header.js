@@ -6,11 +6,17 @@ import classes from "./Header.module.css";
 import useWindowDimensions from "../../CustomHooks/getWindowDimensions";
 
 function Header() {
+  const [isWide, setIsWide] = useState(true);
   const [btnActive, setBtnActive] = useState(true);
   const { width } = useWindowDimensions();
   useEffect(() => {
-    if (width <= 954) setBtnActive(false);
-    else setBtnActive(true);
+    if (width <= 954) {
+      setIsWide(false);
+      setBtnActive(false);
+    } else {
+      setIsWide(true);
+      setBtnActive(true);
+    }
   }, [width]);
 
   function hamburgerMenuHandler() {
@@ -25,6 +31,7 @@ function Header() {
       />
       <div className={classes.logo_container}>
         <NavLink
+          onClick={!isWide && btnActive ? hamburgerMenuHandler : null}
           style={({ isActive }) => {
             return {
               color: isActive ? "rgb(151, 90, 208)" : "",
@@ -61,6 +68,7 @@ function Header() {
         <ul className={classes.lists_container}>
           <li className={classes.list_innerContainer}>
             <NavLink
+              onClick={!isWide && btnActive ? hamburgerMenuHandler : null}
               style={({ isActive }) => {
                 return { color: isActive ? "rgb(151, 90, 208)" : "" };
               }}
@@ -72,6 +80,7 @@ function Header() {
           </li>
           <li className={classes.list_innerContainer}>
             <NavLink
+              onClick={!isWide && btnActive ? hamburgerMenuHandler : null}
               style={({ isActive }) => {
                 return { color: isActive ? "rgb(151, 90, 208)" : "" };
               }}
@@ -83,6 +92,7 @@ function Header() {
           </li>
           <li className={classes.list_innerContainer}>
             <NavLink
+              onClick={!isWide && btnActive ? hamburgerMenuHandler : null}
               style={({ isActive }) => {
                 return { color: isActive ? "rgb(151, 90, 208)" : "" };
               }}
@@ -94,6 +104,7 @@ function Header() {
           </li>
           <li className={classes.list_innerContainer}>
             <NavLink
+              onClick={!isWide && btnActive ? hamburgerMenuHandler : null}
               style={({ isActive }) => {
                 return { color: isActive ? "rgb(151, 90, 208)" : "" };
               }}
@@ -105,6 +116,7 @@ function Header() {
           </li>
           <li className={classes.list_innerContainer}>
             <NavLink
+              onClick={!isWide && btnActive ? hamburgerMenuHandler : null}
               style={({ isActive }) => {
                 return { color: isActive ? "rgb(151, 90, 208)" : "" };
               }}
@@ -116,6 +128,7 @@ function Header() {
           </li>
           <li className={classes.list_innerContainer}>
             <NavLink
+              onClick={!isWide && btnActive ? hamburgerMenuHandler : null}
               style={({ isActive }) => {
                 return { color: isActive ? "rgb(151, 90, 208)" : "" };
               }}

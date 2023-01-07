@@ -34,8 +34,6 @@
 }
 
 .table_Inner_Container {
-  max-height: 500px;
-  overflow: scroll;
   border-radius: 5px;
   text-align: center;
   vertical-align: center;

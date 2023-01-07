@@ -16,9 +16,14 @@ function CoinsDetailsPage() {
 
   const krURL = "https://api.bithumb.com/public/ticker/ALL_KRW";
 
+  let filteredData = Object.entries(datas).filter((data) => {
+    return data[0].toLowerCase().includes(coinName.toLowerCase());
+  });
+
   const option = {
     maximumFractionDigits: 0,
   };
+
   function favouriteHandler() {
     // check the login status
     // if not redirect to login
@@ -28,13 +33,13 @@ function CoinsDetailsPage() {
     setFavourite(!favourite);
   }
 
+  function nameSortHandler() {
+    filteredData = filteredData.sort();
+  }
+
   useEffect(() => {
     getData();
   }, [datas]);
-
-  Object.entries(datas).map((key, value) => {
-    return key, value;
-  });
 
   const getData = async () => {
     try {
@@ -71,9 +76,6 @@ function CoinsDetailsPage() {
             className={classes.searchBar}
             placeholder="COIN NAME"
           />
-          <p>
-            {coinName} & {inputRef.current}
-          </p>
         </div>
       </div>
       <center>
@@ -86,6 +88,7 @@ function CoinsDetailsPage() {
                 </th>
                 <th className={classes.table_head}>
                   <div className={classes.table_title_name}>NAME </div>
+                  <button onClick={nameSortHandler}>N</button>
                 </th>
                 <th className={classes.table_head}>
                   <div className={classes.table_title_number}>PRICE </div>
@@ -104,7 +107,7 @@ function CoinsDetailsPage() {
               </tr>
             </thead>
             <tbody className={classes.table_body}>
-              {Object.entries(datas).map((data) => {
+              {filteredData.map((data) => {
                 const title = data[0];
                 const closing_price = data[1]["closing_price"];
                 const prev_closing_price = data[1]["prev_closing_price"];
@@ -152,7 +155,6 @@ function CoinsDetailsPage() {
                             {" ("}
                             {rate_dif.toFixed(2)}
                             {"%)"}
-                            {/* 이게 변동률 */}
                           </span>
                         </div>
                       </td>

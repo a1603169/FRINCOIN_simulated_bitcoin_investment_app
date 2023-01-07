@@ -71,9 +71,6 @@ function CoinsDetailsPage() {
             className={classes.searchBar}
             placeholder="COIN NAME"
           />
-          <p>
-            {coinName} & {inputRef.current}
-          </p>
         </div>
       </div>
       <center>

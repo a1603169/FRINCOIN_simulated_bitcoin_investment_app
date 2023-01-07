@@ -69,7 +69,7 @@ function CoinsDetailsPage() {
           <button className={classes.category_Btn}>NEW</button>
         </div>
         <div className={classes.input_Container}>
-          <h1 className={classes.searchBar_text}>COIN: </h1>
+          <h1 className={classes.searchBar_text}>COIN:hi test </h1>
           <input
             value={coinName}
             onChange={(e) => setCoinName(e.target.value)}

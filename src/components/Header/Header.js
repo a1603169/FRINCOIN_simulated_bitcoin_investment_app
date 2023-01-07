@@ -55,10 +55,10 @@ function Header() {
           }}
         >
           <span style={{ marginLeft: "30px" }}>
-            NOTICE: TEST YOUR COIN INVESTMENT HERE FOR FREE 4/1/2023{"  "}
+            NOTICE: TEST YOUR COIN INVESTMENT HERE FOR FREE 4/1/2023
           </span>
           <span style={{ marginLeft: "30px" }}>
-            3 CONTACT US IF YOU HAVE ANY PROBLEM 4/1/2023{"  "}
+            CONTACT US IF YOU HAVE ANY PROBLEM 4/1/2023
           </span>
           {/* Later there will be notice here */}
         </Marquee>
@@ -66,6 +66,18 @@ function Header() {
 
       {btnActive && (
         <ul className={classes.lists_container}>
+          <li className={classes.list_innerContainer}>
+            <NavLink
+              onClick={!isWide && btnActive ? hamburgerMenuHandler : null}
+              style={({ isActive }) => {
+                return { color: isActive ? "rgb(151, 90, 208)" : "" };
+              }}
+              className={classes.list}
+              to="/all_coins"
+            >
+              COINS
+            </NavLink>
+          </li>
           <li className={classes.list_innerContainer}>
             <NavLink
               onClick={!isWide && btnActive ? hamburgerMenuHandler : null}
@@ -85,7 +97,7 @@ function Header() {
                 return { color: isActive ? "rgb(151, 90, 208)" : "" };
               }}
               className={classes.list}
-              to="/contact_us"
+              to="/contact"
             >
               CONTACT
             </NavLink>

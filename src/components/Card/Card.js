@@ -1,3 +1,7 @@
+import classes from "./Card.module.css";
+
 function Card() {
-  return <div>This is Card</div>;
+  return <div className={classes.card_container}>This is Card</div>;
 }
+
+export default Card;

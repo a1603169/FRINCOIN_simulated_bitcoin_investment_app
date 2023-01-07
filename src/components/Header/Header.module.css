@@ -33,7 +33,11 @@
 .notice_text {
   color: rgb(51, 129, 51);
   font-size: 18px;
-  padding: 10px;
+  padding: 12.5px;
+  border-bottom: 1px solid;
+  border-top: 1px solid;
+  width: auto;
+  /* This is to fix the error on the mobile view */
 }
 
 .lists_container {
@@ -43,7 +47,7 @@
 
 .list {
   text-decoration: none;
-  color: white;
+  color: rgb(125, 115, 115);
   transition: 0.3s;
   margin: 0 20px;
   font-size: 18px;
@@ -62,7 +66,7 @@
   height: 30px;
   top: 20px;
   right: 20px;
-  color: white;
+  color: rgb(125, 115, 115);
 }
 
 @media screen and (max-width: 954px) {
@@ -76,7 +80,10 @@
     width: 100%;
     padding: 20px 0;
   }
-
+  .notice_text {
+    padding: 13px;
+    margin: 10px 0;
+  }
   .lists_container .list {
     width: 100%;
   }

@@ -1,6 +1,7 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import classes from "./Footer.module.css";
 import githubLogo from "../../assets/github-mark.png";
+import linkedinLogo from "../../assets/linkedin-mark.png";
 
 function Footer() {
   return (
@@ -9,17 +10,29 @@ function Footer() {
         <ul className={classes.footer_logos_container}>
           <li className={classes.footer_logo}>
             <Link target="_BLANK" className={classes.external_url} to="#">
-              L
+              <img
+                className={classes.logo_image}
+                src={linkedinLogo}
+                alt="linkedin_logo"
+              />
             </Link>
           </li>
           <li className={classes.footer_logo}>
             <Link target="_BLANK" className={classes.external_url} to="#">
-              L
+              <img
+                className={classes.logo_image}
+                src={linkedinLogo}
+                alt="linkedin_logo"
+              />
             </Link>
           </li>
           <li className={classes.footer_logo}>
             <Link target="_BLANK" className={classes.external_url} to="#">
-              L
+              <img
+                className={classes.logo_image}
+                src={linkedinLogo}
+                alt="linkedin_logo"
+              />
             </Link>
           </li>
           <li className={classes.footer_logo}>
@@ -33,7 +46,11 @@ function Footer() {
           </li>
           <li className={classes.footer_logo}>
             <Link target="_BLANK" className={classes.external_url} to="#">
-              L
+              <img
+                className={classes.logo_image}
+                src={linkedinLogo}
+                alt="linkedin_logo"
+              />
             </Link>
           </li>
         </ul>

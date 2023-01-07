@@ -35,7 +35,6 @@ function CoinsDetailsPage() {
 
   function nameSortHandler() {
     filteredData = filteredData.sort();
-    return filteredData;
   }
 
   useEffect(() => {
@@ -156,7 +155,6 @@ function CoinsDetailsPage() {
                             {" ("}
                             {rate_dif.toFixed(2)}
                             {"%)"}
-                            {/* 이게 변동률 */}
                           </span>
                         </div>
                       </td>

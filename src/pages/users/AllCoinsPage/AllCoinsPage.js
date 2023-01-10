@@ -10,21 +10,35 @@ function CoinsDetailsPage() {
   const [coinName, setCoinName] = useState("");
   const [showCoinChart, setShowCoinChart] = useState(false);
   const inputRef = useRef("");
+  const [toggleChart, setToggleChart] = useState(false);
   const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    inputRef.current = coinName;
-  }, [coinName]);
-
+  const option = {
+    maximumFractionDigits: 0,
+  };
   const krURL = "https://api.bithumb.com/public/ticker/ALL_KRW";
+
+  const getData = async () => {
+    try {
+      const response = await axios.get(krURL);
+      setDatas(response.data.data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   let filteredData = Object.entries(datas).filter((data) => {
     return data[0].toLowerCase().includes(coinName.toLowerCase());
   });
 
-  const option = {
-    maximumFractionDigits: 0,
-  };
+  useEffect(() => {
+    getData();
+  }, [datas]);
+
+  useEffect(() => {
+    inputRef.current = coinName;
+  }, [coinName]);
 
   function favouriteHandler() {
     // check the login status
@@ -46,21 +60,7 @@ function CoinsDetailsPage() {
     return filteredData;
   }
 
-  useEffect(() => {
-    getData();
-  }, [datas]);
-
-  const getData = async () => {
-    try {
-      const response = await axios.get(krURL);
-
-      setDatas(response.data.data);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  console.log(loading);
 
   if (loading)
     return (

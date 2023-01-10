@@ -22,11 +22,11 @@ const CoinChart = () => {
       const result = await Axios.get(
         "https://api.bithumb.com/public/ticker/ALL_KRW"
       );
-      setData(result.data);
+      setData(result.data.data["BTC"]["closing_price"]);
     };
 
     fetchData();
-  }, []);
+  }, [data]);
 
   const chartData = {
     labels: Object.keys(data),

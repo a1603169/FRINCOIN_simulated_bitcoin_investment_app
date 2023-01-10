@@ -115,9 +115,20 @@ table {
   padding: 10px;
 }
 
+.coinChart_tooltip {
+  position: absolute;
+}
+
 .searchBar_text {
   font-family: Arial, Helvetica, sans-serif;
   margin-right: 5px;
+}
+
+.test {
+  background-color: red;
+}
+.dp_none {
+  display: none;
 }
 
 @media screen and (max-width: 954px) {

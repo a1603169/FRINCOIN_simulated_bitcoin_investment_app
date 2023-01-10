@@ -126,6 +126,13 @@ table {
   margin-right: 5px;
 }
 
+.test {
+  background-color: red;
+}
+.dp_none {
+  display: none;
+}
+
 @media screen and (max-width: 954px) {
   .table_head {
     font-size: 14px;

@@ -14,8 +14,8 @@ Chart.register(PointElement);
 Chart.register(CategoryScale);
 Chart.register(LinearScale);
 
-const CoinChart = () => {
-  const [data, setData] = useState({});
+const CoinChart = ({ selectedCoinData }) => {
+  const [data, setData] = useState({ selectedCoinData });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,6 +24,8 @@ const CoinChart = () => {
       );
       setData(result.data.data["BTC"]["closing_price"]);
     };
+
+    setData(selectedCoinData);
 
     fetchData();
   }, [data]);

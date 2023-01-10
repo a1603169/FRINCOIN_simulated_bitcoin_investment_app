@@ -3,6 +3,7 @@ import classes from "./AllCoinsPage.module.css";
 import { useState, useEffect, useRef } from "react";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import axios from "axios";
+import CoinChart from "../../../components/CoinChart.js/CoinChart";
 
 function CoinsDetailsPage() {
   const [datas, setDatas] = useState({});
@@ -10,7 +11,6 @@ function CoinsDetailsPage() {
   const [coinName, setCoinName] = useState("");
   const [showCoinChart, setShowCoinChart] = useState(false);
   const inputRef = useRef("");
-  const [toggleChart, setToggleChart] = useState(false);
   const [loading, setLoading] = useState(true);
   const option = {
     maximumFractionDigits: 0,
@@ -31,6 +31,8 @@ function CoinsDetailsPage() {
   let filteredData = Object.entries(datas).filter((data) => {
     return data[0].toLowerCase().includes(coinName.toLowerCase());
   });
+
+  console.log(filteredData);
 
   useEffect(() => {
     getData();
@@ -60,7 +62,7 @@ function CoinsDetailsPage() {
     return filteredData;
   }
 
-  console.log(loading);
+  function selectedCoinData() {}
 
   if (loading)
     return (
@@ -188,6 +190,14 @@ function CoinsDetailsPage() {
                           {acc_trade_value_24H.toLocaleString("ko-KR", option)}{" "}
                           KRW
                         </td>
+                      </tr>
+                      <tr className={[classes.chart_graph]}>
+                        <div>
+                          Chart
+                          {/* {showCoinChart && data[0] === title ? (
+                            <CoinChart selectedCoinData={data[1]} />
+                          ) : null} */}
+                        </div>
                       </tr>
                     </>
                   );

@@ -14,6 +14,7 @@ import CoinReviewPage from "./pages/users/CoinReviewPage/CoinReviewPage";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import { React, Fragment } from "react";
+import RegisterationPage from "./pages/users/RegisterationPage/RegisterationPage";
 
 function App() {
   const data = [10, 12, 14, 15, 18, 20, 22, 25, 28, 30];
@@ -25,6 +26,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/login" element={<LoginPage />}></Route>
+          <Route path="/registration" element={<RegisterationPage />}></Route>
           <Route path="/profile" element={<ProfilePage />}></Route>
           <Route path="/ranking" element={<RankingPage />}></Route>
           <Route path="/attendance" element={<AttendancePage />}></Route>

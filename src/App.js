@@ -16,6 +16,8 @@ import Footer from "./components/Footer/Footer";
 import { React, Fragment } from "react";
 
 function App() {
+  const data = [10, 12, 14, 15, 18, 20, 22, 25, 28, 30];
+
   return (
     <Fragment>
       <BrowserRouter>
@@ -26,7 +28,7 @@ function App() {
           <Route path="/profile" element={<ProfilePage />}></Route>
           <Route path="/ranking" element={<RankingPage />}></Route>
           <Route path="/attendance" element={<AttendancePage />}></Route>
-          <Route path="/notice" element={<NoticePage />}></Route>
+          <Route path="/notice" element={<NoticePage data={data} />}></Route>
           <Route path="/coin_review" element={<CoinReviewPage />}></Route>
           <Route path="/all_coins" element={<AllCoinsPage />}></Route>
           <Route path="/coin_detail" element={<CoinDetailPage />}></Route>

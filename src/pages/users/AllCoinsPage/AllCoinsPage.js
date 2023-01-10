@@ -1,3 +1,4 @@
+import Loading from "../../../components/Loading/Loading";
 import classes from "./AllCoinsPage.module.css";
 import { useState, useEffect, useRef } from "react";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
@@ -7,12 +8,13 @@ function CoinsDetailsPage() {
   const [datas, setDatas] = useState({});
   const [favourite, setFavourite] = useState(false);
   const [coinName, setCoinName] = useState("");
+  const [showCoinChart, setShowCoinChart] = useState(false);
   const inputRef = useRef("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     inputRef.current = coinName;
   }, [coinName]);
-  // const [loading, setLoading] = useState(false);
 
   const krURL = "https://api.bithumb.com/public/ticker/ALL_KRW";
 
@@ -33,8 +35,15 @@ function CoinsDetailsPage() {
     setFavourite(!favourite);
   }
 
+  function coinChartHandler() {
+    console.log(showCoinChart);
+    setShowCoinChart(!showCoinChart);
+  }
+
   function nameSortHandler() {
     filteredData = filteredData.sort();
+    console.log(filteredData);
+    return filteredData;
   }
 
   useEffect(() => {
@@ -43,16 +52,22 @@ function CoinsDetailsPage() {
 
   const getData = async () => {
     try {
-      // setLoading(true);
       const response = await axios.get(krURL);
+
       setDatas(response.data.data);
-      // setLoading(false);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
-  // if (loading) return <p>LOADING....</p>;
+  if (loading)
+    return (
+      <>
+        <Loading />
+      </>
+    );
 
   return (
     <div className={classes.table_Outer_Container}>
@@ -69,15 +84,17 @@ function CoinsDetailsPage() {
           <button className={classes.category_Btn}>NEW</button>
         </div>
         <div className={classes.input_Container}>
-          <h1 className={classes.searchBar_text}>COIN:hi test </h1>
+          <h1 className={classes.searchBar_text}>COIN: </h1>
           <input
-            value={coinName}
+            ref={inputRef}
+            type="text"
             onChange={(e) => setCoinName(e.target.value)}
             className={classes.searchBar}
             placeholder="COIN NAME"
           />
         </div>
       </div>
+
       <center>
         <div className={classes.table_Container}>
           <table className={classes.table_Inner_Container}>
@@ -106,6 +123,7 @@ function CoinsDetailsPage() {
                 </th>
               </tr>
             </thead>
+
             <tbody className={classes.table_body}>
               {filteredData.map((data) => {
                 const title = data[0];
@@ -115,58 +133,63 @@ function CoinsDetailsPage() {
                 const rate_dif = (price_dif / closing_price) * 100;
                 const acc_trade_value_24H = +data[1]["acc_trade_value_24H"];
 
-                if (data[0] !== "date") {
+                if (title !== "date") {
                   return (
-                    <tr className={classes.table_row}>
-                      <td className={classes.table_favourite}>
-                        <span onClick={favouriteHandler}>
-                          {!favourite ? <AiFillStar /> : <AiOutlineStar />}
-                        </span>
-                      </td>
-                      <td className={classes.table_data} keys={title}>
-                        <div>{title}</div>
-                      </td>
-                      <td
-                        className={classes.table_data}
-                        keys={title + closing_price}
+                    <>
+                      <tr
+                        className={classes.table_row}
+                        onClick={coinChartHandler}
                       >
-                        <div>
-                          {Number(closing_price).toLocaleString("ko-KR")} KRW
-                        </div>
-                      </td>
-                      <td
-                        className={classes.table_data}
-                        keys={title + price_dif}
-                      >
-                        <div
-                          className={
-                            price_dif > 0
-                              ? classes.red_plus_text
-                              : classes.blue_plus_text
-                          }
+                        <td className={classes.table_favourite}>
+                          <span onClick={favouriteHandler}>
+                            {!favourite ? <AiFillStar /> : <AiOutlineStar />}
+                          </span>
+                        </td>
+                        <td className={classes.table_data} keys={title}>
+                          <div>{title}</div>
+                        </td>
+                        <td
+                          className={classes.table_data}
+                          keys={title + closing_price}
                         >
-                          <span>
-                            {Number.isInteger(price_dif)
-                              ? price_dif.toLocaleString("ko-KR")
-                              : price_dif.toFixed(2)}{" "}
-                            KRW
-                          </span>
-                          <span>
-                            {" ("}
-                            {rate_dif.toFixed(2)}
-                            {"%)"}
-                          </span>
-                        </div>
-                      </td>
+                          <div>
+                            {(+closing_price).toLocaleString("ko-KR")} KRW
+                          </div>
+                        </td>
+                        <td
+                          className={classes.table_data}
+                          keys={title + price_dif}
+                        >
+                          <div
+                            className={
+                              price_dif > 0
+                                ? classes.red_plus_text
+                                : classes.blue_plus_text
+                            }
+                          >
+                            <span>
+                              {Number.isInteger(price_dif)
+                                ? price_dif.toLocaleString("ko-KR")
+                                : price_dif.toFixed(2)}{" "}
+                              KRW
+                            </span>
+                            <span>
+                              {" ("}
+                              {rate_dif.toFixed(2)}
+                              {"%)"}
+                            </span>
+                          </div>
+                        </td>
 
-                      <td
-                        className={classes.table_data}
-                        keys={title + acc_trade_value_24H}
-                      >
-                        {acc_trade_value_24H.toLocaleString("ko-KR", option)}{" "}
-                        KRW
-                      </td>
-                    </tr>
+                        <td
+                          className={classes.table_data}
+                          keys={title + acc_trade_value_24H}
+                        >
+                          {acc_trade_value_24H.toLocaleString("ko-KR", option)}{" "}
+                          KRW
+                        </td>
+                      </tr>
+                    </>
                   );
                 }
               })}

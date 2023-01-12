@@ -8,7 +8,7 @@ import ProfilePage from "./pages/users/MyPage/MyPage";
 import RankingPage from "./pages/users/RankingPage/RankingPage";
 import NoticePage from "./pages/users/NoticePage/NoticePage";
 import AllCoinsPage from "./pages/users/AllCoinsPage/AllCoinsPage";
-import CoinDetailPage from "./pages/users/CoinDetailPage/CoinDetailPage";
+// import CoinDetailPage from "./pages/users/CoinDetailPage/CoinDetailPage";
 import ContactUsPage from "./pages/users/ContactUsPage/ContactUsPage";
 import CoinReviewPage from "./pages/users/CoinReviewPage/CoinReviewPage";
 import Header from "./components/Header/Header";
@@ -33,7 +33,8 @@ function App() {
           <Route path="/notice" element={<NoticePage data={data} />}></Route>
           <Route path="/coin_review" element={<CoinReviewPage />}></Route>
           <Route path="/all_coins" element={<AllCoinsPage />}></Route>
-          <Route path="/coin_detail" element={<CoinDetailPage />}></Route>
+          {/* <Route path="/coin_detail" element={<CoinDetailPage />}></Route> */}
+          {/* Not sure if I use this or not */}
           <Route path="/contact" element={<ContactUsPage />}></Route>
           <Route path="*" element={<NotFoundPage />}></Route>
         </Routes>

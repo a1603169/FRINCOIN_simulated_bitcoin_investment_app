@@ -4,19 +4,27 @@ import { useState, useEffect, useRef } from "react";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import axios from "axios";
 import CoinChart from "../../../components/CoinChart.js/CoinChart";
+import Popup from "react-popup";
 
 function CoinsDetailsPage() {
-  const [datas, setDatas] = useState({});
-  const [favourite, setFavourite] = useState(false);
-  const [coinName, setCoinName] = useState("");
-  const [showCoinChart, setShowCoinChart] = useState(false);
-  const inputRef = useRef("");
-  const [loading, setLoading] = useState(true);
-  const option = {
-    maximumFractionDigits: 0,
-  };
-  const krURL = "https://api.bithumb.com/public/ticker/ALL_KRW";
+  const [selectedTr, setSelectedTr] = useState(null);
+  // console.log(selectedTr === null);
+  // to get the index of the table row which is clicked and open the modal by changing the state
+  // of the selectedTr
 
+  const [favourite, setFavourite] = useState(false);
+  // to decide to show filled star or unfilled start
+
+  const inputRef = useRef("");
+  // to get the input value from the input field and use it to filter the coins
+
+  const tableRef = useRef(null);
+  // to get the table element and use it to show the coin chart
+
+  const [loading, setLoading] = useState(true);
+  // to show the loading spinner₩
+
+  const [datas, setDatas] = useState({});
   const getData = async () => {
     try {
       const response = await axios.get(krURL);
@@ -28,19 +36,33 @@ function CoinsDetailsPage() {
     }
   };
 
-  let filteredData = Object.entries(datas).filter((data) => {
-    return data[0].toLowerCase().includes(coinName.toLowerCase());
-  });
-
-  console.log(filteredData);
+  // API call to get the overall coin data
+  // api call to get all coins data
 
   useEffect(() => {
     getData();
   }, [datas]);
 
+  const [coinName, setCoinName] = useState("");
   useEffect(() => {
     inputRef.current = coinName;
   }, [coinName]);
+
+  // to filter the coins
+
+  let filteredData = Object.entries(datas).filter((data) => {
+    return data[0].toLowerCase().includes(coinName.toLowerCase());
+  });
+
+  // filter the coins based on the input value
+
+  const option = {
+    maximumFractionDigits: 0,
+  };
+  // to set the number of decimal places for the KR prices
+
+  const krURL = "https://api.bithumb.com/public/ticker/ALL_KRW";
+  // KR coin api url
 
   function favouriteHandler() {
     // check the login status
@@ -51,18 +73,13 @@ function CoinsDetailsPage() {
     setFavourite(!favourite);
   }
 
-  function coinChartHandler() {
-    console.log(showCoinChart);
-    setShowCoinChart(!showCoinChart);
+  function selectedCoinDataHandler() {
+    // I have to get the index of the table row and then get the data from the selectedCoinTitle array
+    // and then compare the index of the table row with the index of the selectedCoinTitle array
+    // and then change the state of the selectedCoinTitle array to show the chart which
+    // is in the selectedCoinTitle array with the index of the table row which is clicked and then show the chart component
+    // currently just set as normal toggle without storage
   }
-
-  function nameSortHandler() {
-    filteredData = filteredData.sort();
-    console.log(filteredData);
-    return filteredData;
-  }
-
-  function selectedCoinData() {}
 
   if (loading)
     return (
@@ -107,7 +124,6 @@ function CoinsDetailsPage() {
                 </th>
                 <th className={classes.table_head}>
                   <div className={classes.table_title_name}>NAME </div>
-                  <button onClick={nameSortHandler}>N</button>
                 </th>
                 <th className={classes.table_head}>
                   <div className={classes.table_title_number}>PRICE </div>
@@ -126,21 +142,26 @@ function CoinsDetailsPage() {
               </tr>
             </thead>
 
-            <tbody className={classes.table_body}>
-              {filteredData.map((data) => {
+            <tbody className={classes.table_body} ref={tableRef}>
+              {filteredData.map((data, index) => {
                 const title = data[0];
                 const closing_price = data[1]["closing_price"];
                 const prev_closing_price = data[1]["prev_closing_price"];
                 const price_dif = closing_price - prev_closing_price;
                 const rate_dif = (price_dif / closing_price) * 100;
                 const acc_trade_value_24H = +data[1]["acc_trade_value_24H"];
-
+                const tableIndex = index;
+                const indexReturn = () => {
+                  setSelectedTr(index);
+                };
                 if (title !== "date") {
                   return (
                     <>
                       <tr
+                        key={title + 0}
                         className={classes.table_row}
-                        onClick={coinChartHandler}
+                        onClick={indexReturn}
+                        index={tableIndex}
                       >
                         <td className={classes.table_favourite}>
                           <span onClick={favouriteHandler}>
@@ -191,14 +212,17 @@ function CoinsDetailsPage() {
                           KRW
                         </td>
                       </tr>
-                      <tr className={[classes.chart_graph]}>
-                        <div>
-                          Chart
-                          {/* {showCoinChart && data[0] === title ? (
-                            <CoinChart selectedCoinData={data[1]} />
-                          ) : null} */}
-                        </div>
-                      </tr>
+                      <tr className={[classes.chart_graph]}></tr>
+                      <Popup
+                        open={selectedTr === index}
+                        onClose={() => setSelectedTr(null)}
+                        content={
+                          <tr style={{ height: " 500px" }}>
+                            TESSSTT NOOOT WORRRKING
+                          </tr>
+                        }
+                        closeOnDocumentClick
+                      />
                     </>
                   );
                 }

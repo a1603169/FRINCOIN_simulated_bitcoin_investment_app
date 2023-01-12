@@ -7,16 +7,6 @@ import CoinChart from "../../../components/CoinChart.js/CoinChart";
 
 function CoinsDetailsPage() {
   const [datas, setDatas] = useState({});
-  const [favourite, setFavourite] = useState(false);
-  const [coinName, setCoinName] = useState("");
-  const [showCoinChart, setShowCoinChart] = useState(false);
-  const inputRef = useRef("");
-  const [loading, setLoading] = useState(true);
-  const option = {
-    maximumFractionDigits: 0,
-  };
-  const krURL = "https://api.bithumb.com/public/ticker/ALL_KRW";
-
   const getData = async () => {
     try {
       const response = await axios.get(krURL);
@@ -28,15 +18,60 @@ function CoinsDetailsPage() {
     }
   };
 
-  let filteredData = Object.entries(datas).filter((data) => {
-    return data[0].toLowerCase().includes(coinName.toLowerCase());
-  });
-
-  console.log(filteredData);
+  // API call to get the overall coin data
+  // api call to get all coins data
 
   useEffect(() => {
     getData();
   }, [datas]);
+
+  const [coinName, setCoinName] = useState("");
+  // to filter the coins
+
+  let filteredData = Object.entries(datas).filter((data) => {
+    return data[0].toLowerCase().includes(coinName.toLowerCase());
+  });
+
+  // filter the coins based on the input value
+
+  const [favourite, setFavourite] = useState(false);
+  // to decide to show filled star or unfilled star
+
+  const [showCoinChart, setShowCoinChart] = useState(false);
+  // to show the coin chart
+
+  const inputRef = useRef("");
+  // to get the input value from the input field and use it to filter the coins
+
+  const tableRef = useRef(null);
+  // to get the table element and use it to show the coin chart
+
+  const [loading, setLoading] = useState(true);
+  // to show the loading spinner
+
+  const option = {
+    maximumFractionDigits: 0,
+  };
+  // to set the number of decimal places for the KR prices
+
+  const krURL = "https://api.bithumb.com/public/ticker/ALL_KRW";
+  // KR coin api url
+
+  const initialCoinArray = new Array([]).fill(
+    filteredData.map((coinTitle, index) => {
+      return [coinTitle[0], index, false];
+    })
+  );
+  console.log(initialCoinArray);
+  // to create an array with the same length as the filteredData array
+
+  const [selectedCoinTitle, setSelectedCoinTitle] = useState(initialCoinArray);
+  // to store the selected coin data to show in the chart component with the individual coin chart values
+
+  // useEffect(() => {
+  //   setSelectedCoinTitle([...selectedCoinTitle, filteredData]);
+  // }, [filteredData, toggle]);
+  // console.log(filteredData[0]);
 
   useEffect(() => {
     inputRef.current = coinName;
@@ -51,8 +86,12 @@ function CoinsDetailsPage() {
     setFavourite(!favourite);
   }
 
+  // current issue is that the chart is showing for all the coins
   function coinChartHandler() {
     console.log(showCoinChart);
+    console.log(
+      tableRef.current.children[1].children[0].children[0].children[0]
+    );
     setShowCoinChart(!showCoinChart);
   }
 
@@ -62,7 +101,13 @@ function CoinsDetailsPage() {
     return filteredData;
   }
 
-  function selectedCoinData() {}
+  function selectedCoinDataHandler() {
+    // I have to get the index of the table row and then get the data from the selectedCoinTitle array
+    // and then compare the index of the table row with the index of the selectedCoinTitle array
+    // and then change the state of the selectedCoinTitle array to show the chart which
+    // is in the selectedCoinTitle array with the index of the table row which is clicked and then show the chart component
+    // currently just set as normal toggle without storage
+  }
 
   if (loading)
     return (
@@ -99,7 +144,7 @@ function CoinsDetailsPage() {
 
       <center>
         <div className={classes.table_Container}>
-          <table className={classes.table_Inner_Container}>
+          <table ref={tableRef} className={classes.table_Inner_Container}>
             <thead className={classes.table_header}>
               <tr className={classes.table_row}>
                 <th className={classes.table_head}>
@@ -127,20 +172,21 @@ function CoinsDetailsPage() {
             </thead>
 
             <tbody className={classes.table_body}>
-              {filteredData.map((data) => {
+              {filteredData.map((data, index) => {
                 const title = data[0];
                 const closing_price = data[1]["closing_price"];
                 const prev_closing_price = data[1]["prev_closing_price"];
                 const price_dif = closing_price - prev_closing_price;
                 const rate_dif = (price_dif / closing_price) * 100;
                 const acc_trade_value_24H = +data[1]["acc_trade_value_24H"];
-
+                const tableIndex = index;
                 if (title !== "date") {
                   return (
                     <>
                       <tr
                         className={classes.table_row}
                         onClick={coinChartHandler}
+                        index={tableIndex}
                       >
                         <td className={classes.table_favourite}>
                           <span onClick={favouriteHandler}>

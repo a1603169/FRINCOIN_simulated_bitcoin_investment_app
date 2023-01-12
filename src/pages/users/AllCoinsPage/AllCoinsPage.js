@@ -4,8 +4,26 @@ import { useState, useEffect, useRef } from "react";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import axios from "axios";
 import CoinChart from "../../../components/CoinChart.js/CoinChart";
+import Popup from "react-popup";
 
 function CoinsDetailsPage() {
+  const [selectedTr, setSelectedTr] = useState(null);
+  // console.log(selectedTr === null);
+  // to get the index of the table row which is clicked and open the modal by changing the state
+  // of the selectedTr
+
+  const [favourite, setFavourite] = useState(false);
+  // to decide to show filled star or unfilled start
+
+  const inputRef = useRef("");
+  // to get the input value from the input field and use it to filter the coins
+
+  const tableRef = useRef(null);
+  // to get the table element and use it to show the coin chart
+
+  const [loading, setLoading] = useState(true);
+  // to show the loading spinner₩
+
   const [datas, setDatas] = useState({});
   const getData = async () => {
     try {
@@ -26,6 +44,10 @@ function CoinsDetailsPage() {
   }, [datas]);
 
   const [coinName, setCoinName] = useState("");
+  useEffect(() => {
+    inputRef.current = coinName;
+  }, [coinName]);
+
   // to filter the coins
 
   let filteredData = Object.entries(datas).filter((data) => {
@@ -33,21 +55,6 @@ function CoinsDetailsPage() {
   });
 
   // filter the coins based on the input value
-
-  const [favourite, setFavourite] = useState(false);
-  // to decide to show filled star or unfilled star
-
-  const [showCoinChart, setShowCoinChart] = useState(false);
-  // to show the coin chart
-
-  const inputRef = useRef("");
-  // to get the input value from the input field and use it to filter the coins
-
-  const tableRef = useRef(null);
-  // to get the table element and use it to show the coin chart
-
-  const [loading, setLoading] = useState(true);
-  // to show the loading spinner
 
   const option = {
     maximumFractionDigits: 0,
@@ -57,26 +64,6 @@ function CoinsDetailsPage() {
   const krURL = "https://api.bithumb.com/public/ticker/ALL_KRW";
   // KR coin api url
 
-  const initialCoinArray = new Array([]).fill(
-    filteredData.map((coinTitle, index) => {
-      return [coinTitle[0], index, false];
-    })
-  );
-  console.log(initialCoinArray);
-  // to create an array with the same length as the filteredData array
-
-  const [selectedCoinTitle, setSelectedCoinTitle] = useState(initialCoinArray);
-  // to store the selected coin data to show in the chart component with the individual coin chart values
-
-  // useEffect(() => {
-  //   setSelectedCoinTitle([...selectedCoinTitle, filteredData]);
-  // }, [filteredData, toggle]);
-  // console.log(filteredData[0]);
-
-  useEffect(() => {
-    inputRef.current = coinName;
-  }, [coinName]);
-
   function favouriteHandler() {
     // check the login status
     // if not redirect to login
@@ -84,21 +71,6 @@ function CoinsDetailsPage() {
     // to decide to show filled star or unfilled star
     // currently just set as normal toggle without storage
     setFavourite(!favourite);
-  }
-
-  // current issue is that the chart is showing for all the coins
-  function coinChartHandler() {
-    console.log(showCoinChart);
-    console.log(
-      tableRef.current.children[1].children[0].children[0].children[0]
-    );
-    setShowCoinChart(!showCoinChart);
-  }
-
-  function nameSortHandler() {
-    filteredData = filteredData.sort();
-    console.log(filteredData);
-    return filteredData;
   }
 
   function selectedCoinDataHandler() {
@@ -144,7 +116,7 @@ function CoinsDetailsPage() {
 
       <center>
         <div className={classes.table_Container}>
-          <table ref={tableRef} className={classes.table_Inner_Container}>
+          <table className={classes.table_Inner_Container}>
             <thead className={classes.table_header}>
               <tr className={classes.table_row}>
                 <th className={classes.table_head}>
@@ -152,7 +124,6 @@ function CoinsDetailsPage() {
                 </th>
                 <th className={classes.table_head}>
                   <div className={classes.table_title_name}>NAME </div>
-                  <button onClick={nameSortHandler}>N</button>
                 </th>
                 <th className={classes.table_head}>
                   <div className={classes.table_title_number}>PRICE </div>
@@ -171,7 +142,7 @@ function CoinsDetailsPage() {
               </tr>
             </thead>
 
-            <tbody className={classes.table_body}>
+            <tbody className={classes.table_body} ref={tableRef}>
               {filteredData.map((data, index) => {
                 const title = data[0];
                 const closing_price = data[1]["closing_price"];
@@ -180,12 +151,16 @@ function CoinsDetailsPage() {
                 const rate_dif = (price_dif / closing_price) * 100;
                 const acc_trade_value_24H = +data[1]["acc_trade_value_24H"];
                 const tableIndex = index;
+                const indexReturn = () => {
+                  setSelectedTr(index);
+                };
                 if (title !== "date") {
                   return (
                     <>
                       <tr
+                        key={title + 0}
                         className={classes.table_row}
-                        onClick={coinChartHandler}
+                        onClick={indexReturn}
                         index={tableIndex}
                       >
                         <td className={classes.table_favourite}>
@@ -237,14 +212,17 @@ function CoinsDetailsPage() {
                           KRW
                         </td>
                       </tr>
-                      <tr className={[classes.chart_graph]}>
-                        <div>
-                          Chart
-                          {/* {showCoinChart && data[0] === title ? (
-                            <CoinChart selectedCoinData={data[1]} />
-                          ) : null} */}
-                        </div>
-                      </tr>
+                      <tr className={[classes.chart_graph]}></tr>
+                      <Popup
+                        open={selectedTr === index}
+                        onClose={() => setSelectedTr(null)}
+                        content={
+                          <tr style={{ height: " 500px" }}>
+                            TESSSTT NOOOT WORRRKING
+                          </tr>
+                        }
+                        closeOnDocumentClick
+                      />
                     </>
                   );
                 }

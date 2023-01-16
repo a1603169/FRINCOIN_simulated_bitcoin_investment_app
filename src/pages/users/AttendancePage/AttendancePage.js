@@ -40,14 +40,15 @@ const AttendancePage = () => {
       {/* {isLoading ? (
         <p>Loading attendance data...</p>
       ) :  */}
-
-      <div className={classes.page_container}>
-        <h1 className={classes.page_title}>Attendance Page</h1>
-        <Calendar onClickDay={handleAttendanceCheck} />
-        <div className={classes.page_attendance_report_para}>
-          <p>Number of attendance checks: {attendanceDates.length}</p>
+      <center>
+        <div className={classes.page_container}>
+          <h1 className={classes.page_title}>Attendance Page</h1>
+          <Calendar onClickDay={handleAttendanceCheck} />
+          <div className={classes.page_attendance_report_para}>
+            <p>Number of attendance checks: {attendanceDates.length}</p>
+          </div>
         </div>
-      </div>
+      </center>
     </div>
   );
 };

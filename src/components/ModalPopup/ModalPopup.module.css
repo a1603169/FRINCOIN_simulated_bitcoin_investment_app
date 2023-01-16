@@ -1,0 +1,54 @@
+@import "../../reset/reset.css";
+
+.modal_popup_container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal_popup {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal_popup_headear {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  font-family: Arial;
+}
+
+.modal_popup_body {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  font-family: Arial;
+}
+
+.modal_popup_footer {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  font-family: Arial;
+}
+
+.modal_popup_title {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  font-family: Arial;
+}
+
+.modal_popup_para {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  font-family: Arial;
+}

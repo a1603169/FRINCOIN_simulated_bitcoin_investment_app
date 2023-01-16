@@ -3,11 +3,13 @@ import classes from "./AllCoinsPage.module.css";
 import { useState, useEffect, useRef } from "react";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import axios from "axios";
-import CoinChart from "../../../components/CoinChart.js/CoinChart";
-import Popup from "react-popup";
+import ModalPopup from "../../../components/ModalPopup/ModalPopup";
 
 function CoinsDetailsPage() {
   const [selectedTr, setSelectedTr] = useState(null);
+  function closeModal() {
+    setSelectedTr(null);
+  }
   // console.log(selectedTr === null);
   // to get the index of the table row which is clicked and open the modal by changing the state
   // of the selectedTr
@@ -152,7 +154,8 @@ function CoinsDetailsPage() {
                 const acc_trade_value_24H = +data[1]["acc_trade_value_24H"];
                 const tableIndex = index;
                 const indexReturn = () => {
-                  setSelectedTr(index);
+                  if (selectedTr === null) setSelectedTr(index);
+                  else setSelectedTr(null);
                 };
                 if (title !== "date") {
                   return (
@@ -212,16 +215,12 @@ function CoinsDetailsPage() {
                           KRW
                         </td>
                       </tr>
-                      <tr className={[classes.chart_graph]}></tr>
-                      <Popup
-                        open={selectedTr === index}
-                        onClose={() => setSelectedTr(null)}
-                        content={
-                          <tr style={{ height: " 500px" }}>
-                            TESSSTT NOOOT WORRRKING
-                          </tr>
-                        }
-                        closeOnDocumentClick
+
+                      <ModalPopup
+                        show={selectedTr}
+                        close={closeModal}
+                        index={tableIndex}
+                        data={filteredData}
                       />
                     </>
                   );

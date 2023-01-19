@@ -24,6 +24,8 @@
     <img src="https://img.shields.io/badge/Cssmodules-000000?style=for-the-badge&logo=Css-modules&logoColor=white">
     <img src="https://img.shields.io/badge/chart.js-FF6384?style=for-the-badge&logo=chart.js&logoColor=white">
     <img src="https://img.shields.io/badge/amazonaws-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white">
+    <img src="https://img.shields.io/badge/redux-764ABC?style=for-the-badge&logo=redux&logoColor=white">
+
   </div>
   <h2>사용한 기술 BE - For Backend : ??? </h2>
 </div>
@@ -95,3 +97,6 @@
 
 ## 연락 페이지 - Contact Page
 - 관련 연락처 랜딩페이지 느낌으로 - Contact details as if landing page design
+
+## 배포 - Deploy
+- AWS

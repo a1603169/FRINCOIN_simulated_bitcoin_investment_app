@@ -12,7 +12,7 @@
 </div>
 </hr>
 <div align="center">
-  <h2>사용한 기술 FE - For Frontend</h2>  
+  <h2>사용한 기술 FE - For Frontend : a1603169</h2>  
     <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white">
     <img src="https://img.shields.io/badge/CRA-09D3AC?style=for-the-badge&logo=createreactapp&logoColor=white">
     <img src="https://img.shields.io/badge/React-Router-CA4245?style=for-the-badge&logo=reactrouter&logoColor=white">
@@ -24,7 +24,7 @@
     <img src="https://img.shields.io/badge/chart.js-FF6384?style=for-the-badge&logo=chart.js&logoColor=white">
     <img src="https://img.shields.io/badge/amazonaws-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white">
     
-  <h2>사용한 기술 BE - For Backend</h2>
+  <h2>사용한 기술 BE - For Backend : ??? </h2>
 </div>
 </hr>
 <div align="center">

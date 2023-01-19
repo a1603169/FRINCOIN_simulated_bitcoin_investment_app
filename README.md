@@ -1,18 +1,19 @@
 
-<div align="center">
+<div align="left">
   <h1>FRINCOIN 제작중 - on progress</h1>
   <h3>비트코인 거래 완벽 이해, 당신의 투자기술 여기서 무료로 활용해보세요. 여기는 프린코인!</h3>
   <p>"Experience the future of digital currency with our easy-to-use <strong>Bitcoin testing website</strong>, the ultimate tool for mastering the intricacies of Bitcoin transactions for free"</p>
 <img src="./src/assets/demo_image.png" width=500 />
 </div>
 </hr>
-<div align="center">
+<div align="left">
   <h2>현재 상태 - Current Status</h2>
   <p>제작중입니다 4/1/2022 ~</p>
 </div>
 </hr>
-<div align="center">
+<div align="left">
   <h2>사용한 기술 FE - For Frontend : a1603169</h2>  
+  <div align="left">
     <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white">
     <img src="https://img.shields.io/badge/CRA-09D3AC?style=for-the-badge&logo=createreactapp&logoColor=white">
     <img src="https://img.shields.io/badge/React-Router-CA4245?style=for-the-badge&logo=reactrouter&logoColor=white">
@@ -23,11 +24,11 @@
     <img src="https://img.shields.io/badge/Cssmodules-000000?style=for-the-badge&logo=Css-modules&logoColor=white">
     <img src="https://img.shields.io/badge/chart.js-FF6384?style=for-the-badge&logo=chart.js&logoColor=white">
     <img src="https://img.shields.io/badge/amazonaws-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white">
-    
+  </div>
   <h2>사용한 기술 BE - For Backend : ??? </h2>
 </div>
 </hr>
-<div align="center">
+<div align="left">
   <h2>해야 할 목록 - To-Do-List</h2>  
 </div>
 

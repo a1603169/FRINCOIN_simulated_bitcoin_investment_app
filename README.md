@@ -26,6 +26,7 @@
     <img src="https://img.shields.io/badge/Css3-1572B6?style=for-the-badge&logo=Css3&logoColor=white">
     <img src="https://img.shields.io/badge/Cssmodules-000000?style=for-the-badge&logo=Css-modules&logoColor=white">
     <img src="https://img.shields.io/badge/chart.js-FF6384?style=for-the-badge&logo=chart.js&logoColor=white">
+    <span> to Rechart Library as it is built with react</span>
     <img src="https://img.shields.io/badge/amazonaws-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white">
     <img src="https://img.shields.io/badge/redux-764ABC?style=for-the-badge&logo=redux&logoColor=white">
 

@@ -38,8 +38,8 @@
   text-align: center;
   vertical-align: center;
   font-family: Arial;
-  width: 90%;
-  margin: 0 5%;
+  width: 90vw;
+  margin: 0 5vw;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
@@ -83,6 +83,9 @@ table {
   background-color: black;
   color: rgb(151, 90, 208);
   opacity: 0.8;
+}
+.table_tow:active {
+  background-color: black;
 }
 
 .table_head {

@@ -147,6 +147,7 @@ function CoinsDetailsPage() {
             <tbody className={classes.table_body} ref={tableRef}>
               {filteredData.map((data, index) => {
                 const title = data[0];
+
                 const closing_price = data[1]["closing_price"];
                 const prev_closing_price = data[1]["prev_closing_price"];
                 const price_dif = closing_price - prev_closing_price;
@@ -165,6 +166,15 @@ function CoinsDetailsPage() {
                         className={classes.table_row}
                         onClick={indexReturn}
                         index={tableIndex}
+                        style={
+                          selectedTr === index
+                            ? {
+                                backgroundColor: "black",
+                                opacity: "0.8",
+                                color: "rgb(151,90,208)",
+                              }
+                            : null
+                        }
                       >
                         <td className={classes.table_favourite}>
                           <span onClick={favouriteHandler}>
@@ -217,6 +227,7 @@ function CoinsDetailsPage() {
                       </tr>
 
                       <ModalPopup
+                        title={title}
                         show={selectedTr}
                         close={closeModal}
                         index={tableIndex}

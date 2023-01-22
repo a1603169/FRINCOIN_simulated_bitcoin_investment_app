@@ -82,11 +82,11 @@ table {
   color: rgb(151, 90, 208);
   opacity: 0.8;
 }
-.table_tow-active {
+/* .table_tow-active {
   background-color: black;
   color: rgb(151, 90, 208);
   opacity: 0.8;
-}
+} */
 
 .table_head {
 }

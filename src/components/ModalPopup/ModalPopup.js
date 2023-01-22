@@ -1,14 +1,14 @@
 import classes from "./ModalPopup.module.css";
 import CoinChart from "../CoinChart.js/CoinChart";
-function ModalPopup({ show, close, index, data }) {
+function ModalPopup({ title, show, close, index, data }) {
   if (show === null) {
     return null;
   } else if (show === index) {
     return (
-      <tr className={classes.modal_popup_container}>
+      <div className={classes.modal_popup_container}>
         <div className={classes.modal_popup}>
           <div className={classes.modal_popup_header}>
-            <h2>Modal Popup</h2>
+            <h2>{title}</h2>
           </div>
           <div className={classes.modal_popup_body}>
             <CoinChart selectedCoinData={data} />
@@ -17,7 +17,7 @@ function ModalPopup({ show, close, index, data }) {
             <button onClick={close}>Close</button>
           </div>
         </div>
-      </tr>
+      </div>
     );
   }
 }

@@ -1,3 +1,5 @@
+@import "../../../reset/reset.css";
+
 .table_Outer_Container {
   background-color: rgb(202, 185, 219);
   padding-bottom: 50px;

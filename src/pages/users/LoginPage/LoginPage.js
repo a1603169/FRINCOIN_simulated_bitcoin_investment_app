@@ -28,22 +28,28 @@ function LoginPage() {
   // 나중에 클라스 입혀놔야함!!!!!!!!!!!!!!!!!!!!!!!!
   return (
     <div className={classes.form_container}>
-      <form classesName={classes.form} onSubmit={handleSubmit}>
-        <label htmlFor="id">ID:</label>
+      <form className={classes.form} onSubmit={handleSubmit}>
+        <label className={classes.form_title} htmlFor="id">
+          ID
+        </label>
         <input
           type="text"
           id="id"
           value={id}
+          className={classes.form_input}
           onChange={(event) => setId(event.target.value)}
           style={{
             boxShadow: "0px 0px 3px 0px rgba(0,0,0,0.75)",
           }}
         />
         <br />
-        <label htmlFor="password">Password:</label>
+        <label className={classes.form_title} htmlFor="password">
+          Password
+        </label>
         <input
           type="password"
           id="password"
+          className={classes.form_input}
           value={password}
           onChange={(event) => setPassword(event.target.value)}
           style={{
@@ -51,8 +57,15 @@ function LoginPage() {
           }}
         />
         <br />
-        <button type="submit">Submit</button>
+        <button className={classes.form_button} type="submit">
+          LOGIN
+        </button>
       </form>
+      <div className={classes.register_container}>
+        <h1 className={classes.form_title}>Haven't Signed Up?</h1>
+        <button className={classes.form_button}>REGISTER</button>
+        <button className={classes.form_button}>LOGIN WITH GOOGLE</button>
+      </div>
     </div>
   );
 }

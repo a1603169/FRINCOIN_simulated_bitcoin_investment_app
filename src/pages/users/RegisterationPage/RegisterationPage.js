@@ -205,10 +205,6 @@ function RegisterationPage() {
     const password = passwordRef.current.value;
     const passwordConfirm = passwordConfirmRef.current.value;
 
-    // email validation with regex
-
-    // password validation
-
     console.log(email, nickname, password, passwordConfirm);
     if (
       !isEmailDup &&
@@ -221,8 +217,29 @@ function RegisterationPage() {
       setIsRegisterSuccess(true);
       // Success alert
       alert("Registeration Success!");
+      // POST request to the server with the ID and password as the request body
+      axios
+        .post("example.url", {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+          params: {
+            email: email,
+            nickname: nickname,
+            password: password,
+          },
+        })
+        .then((res) => {
+          console.log(res, "REGISTERATION SUCCESS");
+        })
+        .catch((err) => {
+          console.log(err, "REGISTERATION FAIL");
+        });
+
+      // Redirect to the login page
+      window.history.push("/login");
     }
-    // POST request to the server with the ID and password as the request body
   };
 
   if (isRegisterSuccess) {

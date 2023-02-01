@@ -2,28 +2,30 @@
 
 .modal_popup_container {
   position: fixed;
+  z-index: 9999;
   background-color: transparent;
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(35px);
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  color: rgb(151, 90, 208);
 }
 
 .modal_popup {
-  width: 100%;
+  background-color: rgb(0, 0, 0, 0.7);
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
 }
 
-.modal_popup_headear {
-  font-size: 30px;
+.modal_popup_header {
+  font-size: 3rem;
   font-weight: bold;
-  margin-bottom: 20px;
-  font-family: Arial;
+  padding: 1rem 9rem;
+  margin: 2.5rem 0;
 }
 
 .modal_popup_body {
@@ -33,11 +35,13 @@
   font-family: Arial;
 }
 
-.modal_popup_footer {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  font-family: Arial;
+.modal_popup_close_button {
+  position: fixed;
+  top: 5%;
+  right: 5%;
+  font-size: 4rem;
+  color: rgb(151, 90, 208);
+  cursor: pointer;
 }
 
 .modal_popup_title {
@@ -52,4 +56,86 @@
   font-weight: bold;
   margin-bottom: 20px;
   font-family: Arial;
+}
+
+.modal_popup_buy_sell_outer_container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1.5rem;
+  /* width: 100%; */
+  margin-bottom: 20px;
+  font-family: arial;
+}
+
+.modal_popup_buy_sell_inner_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 8px;
+  height: 100%;
+  padding: 1rem;
+  border: 2px solid rgb(151, 90, 208);
+  border-radius: 5px;
+}
+
+.modal_popup_buy_sell_title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  font-family: Arial;
+}
+
+.modal_popup_buy_sell_form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.modal_popup_buy_sell_form_input {
+  font-size: 1.5rem;
+  padding: 0.5rem 0rem 0.5rem 0.5rem;
+  margin-bottom: 1rem;
+  background-color: transparent;
+  border: 2px solid rgb(151, 90, 208);
+  color: rgb(151, 90, 208);
+  font-family: Arial;
+  border-radius: 5px;
+}
+
+.modal_popup_buy_sell_form_button {
+  padding: 1rem 2rem;
+  padding: 0.5rem 0rem 0.5rem 0.5rem;
+  border: 2px solid rgb(151, 90, 208);
+  background-color: transparent;
+  color: rgb(151, 90, 208);
+  border-radius: 5px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.modal_popup_buy_sell_form_button:hover {
+  box-shadow: 0 0 16px;
+}
+
+/* USER MONEY  */
+
+.user_money_amount_title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  font-family: Arial;
+}
+
+@media screen and (max-width: 965px) {
+  .modal_popup_buy_sell_outer_container {
+    grid-template-columns: 1fr;
+    grid-gap: 0.5rem;
+  }
+  .modal_popup_buy_sell_inner_container {
+    margin: 1rem;
+    height: auto;
+  }
 }

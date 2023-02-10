@@ -122,7 +122,7 @@ function CoinsDetailsPage() {
             <thead className={classes.table_header}>
               <tr className={classes.table_row}>
                 <th className={classes.table_head}>
-                  <div className={classes.table_title_name}> </div>
+                  <div className={[classes.table_title_name]}>FAVOURITE</div>
                 </th>
                 <th className={classes.table_head}>
                   <div className={classes.table_title_name}>NAME </div>

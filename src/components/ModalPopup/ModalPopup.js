@@ -133,6 +133,24 @@ function ModalPopup({ title, show, close, index, data }) {
       });
   };
 
+  const addToFavourite = (event) => {
+    event.preventDefault();
+    const favouriteCoin = title;
+    axios
+      .post("example.com", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          favouriteCoin: favouriteCoin,
+        }),
+      })
+      .then((response) => {})
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   if (show === null) {
     return null;
   } else if (show === index) {
@@ -202,6 +220,12 @@ function ModalPopup({ title, show, close, index, data }) {
               <div className={classes.user_money_amount_amount}>
                 <h1>USER MONEY AMOUNT</h1>
               </div>
+              <button
+                onClick={addToFavourite}
+                className={classes.modal_popup_buy_sell_form_button}
+              >
+                ADD FAVOURITE
+              </button>
             </div>
             <div className={classes.modal_popup_buy_sell_inner_container}>
               <h1 className={classes.modal_popup_buy_sell_title}>SELL</h1>

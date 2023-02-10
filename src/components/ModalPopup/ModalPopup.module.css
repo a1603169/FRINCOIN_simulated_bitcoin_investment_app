@@ -108,7 +108,7 @@
 
 .modal_popup_buy_sell_form_button {
   padding: 1rem 2rem;
-  padding: 0.5rem 0rem 0.5rem 0.5rem;
+
   margin-bottom: 0.5rem;
   border: 2px solid rgb(151, 90, 208);
   background-color: transparent;
@@ -128,6 +128,13 @@
 
 .user_money_amount_title {
   font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  font-family: Arial;
+}
+
+.user_money_amount_amount {
+  font-size: 1rem;
   font-weight: bold;
   margin-bottom: 2rem;
   font-family: Arial;

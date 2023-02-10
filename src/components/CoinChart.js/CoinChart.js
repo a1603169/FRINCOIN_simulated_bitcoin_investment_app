@@ -1,5 +1,86 @@
 function CoinChart() {
-  return <div>This is a chart</div>;
+  return (
+    <div>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+      <p>This is a chart</p>
+    </div>
+  );
 }
 
 export default CoinChart;

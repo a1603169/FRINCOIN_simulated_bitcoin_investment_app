@@ -147,6 +147,7 @@
   }
   .modal_popup_buy_sell_inner_container {
     margin: 1rem;
+    padding: 5px;
     height: auto;
   }
   .modal_popup {

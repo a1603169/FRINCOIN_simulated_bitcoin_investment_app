@@ -37,6 +37,10 @@
   cursor: pointer;
   transition: 0.3s;
 }
+.form_button a {
+  color: black;
+  text-decoration: none;
+}
 
 .register_container {
   display: flex;

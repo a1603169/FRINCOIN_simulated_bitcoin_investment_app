@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 import classes from "./LoginPage.module.css";
+import RegisterationPage from "../RegisterationPage/RegisterationPage";
+import { Link, Route } from "react-router-dom";
 
 function LoginPage() {
   // Declare state variables for the ID and password
@@ -63,7 +65,9 @@ function LoginPage() {
       </form>
       <div className={classes.register_container}>
         <h1 className={classes.form_title}>Haven't Signed Up?</h1>
-        <button className={classes.form_button}>REGISTER</button>
+        <button className={classes.form_button}>
+          <Link to="/registration">REGISTER</Link>
+        </button>
         <button className={classes.form_button}>LOGIN WITH GOOGLE</button>
       </div>
     </div>

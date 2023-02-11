@@ -6,26 +6,36 @@
 }
 
 .filter_Container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
+  margin: 0 5vw;
+  padding-top: 1vw;
 }
 
 .btns_Container {
-  padding: 10px 25px;
-  border: none;
+  display: flex;
+  justify-content: center;
 }
 
 .input_Container {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+  margin-right: 5px;
+}
+.category_Btn {
+  padding: 10px 80px;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  border-radius: 5px;
+  background-color: rgb(151, 90, 208);
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.category_Btn {
-  padding: 10px 25px;
-  margin: 5px;
+.category_Btn:hover {
+  background-color: rgb(202, 185, 219);
 }
 
 .favourite_Btn {
@@ -84,6 +94,10 @@ table {
   color: rgb(151, 90, 208);
   opacity: 0.8;
 }
+
+.table_row_no_hover {
+  background-color: white;
+}
 /* .table_tow-active {
   background-color: black;
   color: rgb(151, 90, 208);
@@ -116,9 +130,13 @@ table {
 
 .searchBar {
   width: 100%;
-  padding: 10px;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  padding: 0 10px;
+  font-size: 18px;
+  font-family: Arial;
 }
-
 .coinChart_tooltip {
   position: absolute;
 }
@@ -126,11 +144,9 @@ table {
 .searchBar_text {
   font-family: Arial, Helvetica, sans-serif;
   margin-right: 5px;
+  font-size: 18px;
 }
 
-.test {
-  background-color: red;
-}
 .dp_none {
   display: none;
 }
@@ -141,5 +157,15 @@ table {
   }
   .table_data {
     font-size: 14px;
+  }
+  .btns_Container {
+    flex-direction: column;
+  }
+  .category_Btn {
+    margin: 5px 0;
+    margin-right: 0;
+  }
+  .input_Container {
+    margin: 5px 0 10px 0;
   }
 }

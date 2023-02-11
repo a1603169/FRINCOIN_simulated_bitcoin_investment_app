@@ -151,6 +151,15 @@ table {
   display: none;
 }
 
+.coin_not_found {
+  font-size: 2rem;
+  padding: 8rem 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: rgb(202, 185, 219);
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
 @media screen and (max-width: 954px) {
   .table_head {
     font-size: 14px;

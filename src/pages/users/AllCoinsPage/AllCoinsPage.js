@@ -118,128 +118,136 @@ function CoinsDetailsPage() {
 
       <center>
         <div className={classes.table_Container}>
-          <table className={classes.table_Inner_Container}>
-            <thead className={classes.table_header}>
-              <tr className={classes.table_row}>
-                <th className={classes.table_head}>
-                  <div className={[classes.table_title_name]}>FAVOURITE</div>
-                </th>
-                <th className={classes.table_head}>
-                  <div className={classes.table_title_name}>NAME </div>
-                </th>
-                <th className={classes.table_head}>
-                  <div className={classes.table_title_number}>PRICE </div>
-                </th>
+          {filteredData.length === 0 ? (
+            <center>
+              <div className={classes.coin_not_found}>
+                COIN NOT EXIST, PLEASE TYPE THE NAME OF THE COIN CODE PROPERLY
+              </div>
+            </center>
+          ) : (
+            <table className={classes.table_Inner_Container}>
+              <thead className={classes.table_header}>
+                <tr className={classes.table_row}>
+                  <th className={classes.table_head}>
+                    <div className={[classes.table_title_name]}>FAVOURITE</div>
+                  </th>
+                  <th className={classes.table_head}>
+                    <div className={classes.table_title_name}>NAME </div>
+                  </th>
+                  <th className={classes.table_head}>
+                    <div className={classes.table_title_number}>PRICE </div>
+                  </th>
 
-                <th className={classes.table_head}>
-                  <div className={classes.table_title_number}>
-                    RATE OF CHANGE
-                  </div>
-                </th>
-                <th className={classes.table_head}>
-                  <div className={classes.table_title_name}>
-                    TRANSACTION AMOUNT(24H)
-                  </div>
-                </th>
-              </tr>
-            </thead>
+                  <th className={classes.table_head}>
+                    <div className={classes.table_title_number}>
+                      RATE OF CHANGE
+                    </div>
+                  </th>
+                  <th className={classes.table_head}>
+                    <div className={classes.table_title_name}>
+                      TRANSACTION AMOUNT(24H)
+                    </div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody className={classes.table_body} ref={tableRef}>
+                {filteredData.map((data, index) => {
+                  const title = data[0];
 
-            <tbody className={classes.table_body} ref={tableRef}>
-              {filteredData.map((data, index) => {
-                const title = data[0];
+                  const closing_price = data[1]["closing_price"];
+                  const prev_closing_price = data[1]["prev_closing_price"];
+                  const price_dif = closing_price - prev_closing_price;
+                  const rate_dif = (price_dif / closing_price) * 100;
+                  const acc_trade_value_24H = +data[1]["acc_trade_value_24H"];
+                  const tableIndex = index;
+                  const indexReturn = () => {
+                    if (selectedTr === null) setSelectedTr(index);
+                    else setSelectedTr(null);
+                  };
 
-                const closing_price = data[1]["closing_price"];
-                const prev_closing_price = data[1]["prev_closing_price"];
-                const price_dif = closing_price - prev_closing_price;
-                const rate_dif = (price_dif / closing_price) * 100;
-                const acc_trade_value_24H = +data[1]["acc_trade_value_24H"];
-                const tableIndex = index;
-                const indexReturn = () => {
-                  if (selectedTr === null) setSelectedTr(index);
-                  else setSelectedTr(null);
-                };
-                if (title !== "date") {
-                  return (
-                    <>
-                      <tr
-                        key={title + 0}
-                        className={classes.table_row}
-                        onClick={indexReturn}
-                        index={tableIndex}
-                        style={
-                          selectedTr === index
-                            ? {
-                                backgroundColor: "black",
-                                opacity: "0.8",
-                                color: "rgb(151,90,208)",
-                              }
-                            : null
-                        }
-                      >
-                        <td className={classes.table_favourite}>
-                          <span onClick={favouriteHandler}>
-                            {!favourite ? <AiFillStar /> : <AiOutlineStar />}
-                          </span>
-                        </td>
-                        <td className={classes.table_data} keys={title}>
-                          <div>{title}</div>
-                        </td>
-                        <td
-                          className={classes.table_data}
-                          keys={title + closing_price}
+                  if (title !== "date") {
+                    return (
+                      <>
+                        <tr
+                          key={title + 0}
+                          className={classes.table_row}
+                          onClick={indexReturn}
+                          index={tableIndex}
+                          style={
+                            selectedTr === index
+                              ? {
+                                  backgroundColor: "black",
+                                  opacity: "0.8",
+                                  color: "rgb(151,90,208)",
+                                }
+                              : null
+                          }
                         >
-                          <div>
-                            {(+closing_price).toLocaleString("ko-KR")} KRW
-                          </div>
-                        </td>
-                        <td
-                          className={classes.table_data}
-                          keys={title + price_dif}
-                        >
-                          <div
-                            className={
-                              price_dif > 0
-                                ? classes.red_plus_text
-                                : classes.blue_plus_text
-                            }
+                          <td className={classes.table_favourite}>
+                            <span onClick={favouriteHandler}>
+                              {!favourite ? <AiFillStar /> : <AiOutlineStar />}
+                            </span>
+                          </td>
+                          <td className={classes.table_data} keys={title}>
+                            <div>{title}</div>
+                          </td>
+                          <td
+                            className={classes.table_data}
+                            keys={title + closing_price}
                           >
-                            <span>
-                              {Number.isInteger(price_dif)
-                                ? price_dif.toLocaleString("ko-KR")
-                                : price_dif.toFixed(2)}{" "}
-                              KRW
-                            </span>
-                            <span>
-                              {" ("}
-                              {rate_dif.toFixed(2)}
-                              {"%)"}
-                            </span>
-                          </div>
-                        </td>
-
-                        <td
-                          className={classes.table_data}
-                          keys={title + acc_trade_value_24H}
-                        >
-                          {acc_trade_value_24H.toLocaleString("ko-KR", option)}{" "}
-                          KRW
-                        </td>
-                      </tr>
-
-                      <ModalPopup
-                        title={title}
-                        show={selectedTr}
-                        close={closeModal}
-                        index={tableIndex}
-                        data={filteredData}
-                      />
-                    </>
-                  );
-                }
-                if (filteredData.length) return <div></div>;
-              })}
-            </tbody>
-          </table>
+                            <div>
+                              {(+closing_price).toLocaleString("ko-KR")} KRW
+                            </div>
+                          </td>
+                          <td
+                            className={classes.table_data}
+                            keys={title + price_dif}
+                          >
+                            <div
+                              className={
+                                price_dif > 0
+                                  ? classes.red_plus_text
+                                  : classes.blue_plus_text
+                              }
+                            >
+                              <span>
+                                {Number.isInteger(price_dif)
+                                  ? price_dif.toLocaleString("ko-KR")
+                                  : price_dif.toFixed(2)}{" "}
+                                KRW
+                              </span>
+                              <span>
+                                {" ("}
+                                {rate_dif.toFixed(2)}
+                                {"%)"}
+                              </span>
+                            </div>
+                          </td>
+                          <td
+                            className={classes.table_data}
+                            keys={title + acc_trade_value_24H}
+                          >
+                            {acc_trade_value_24H.toLocaleString(
+                              "ko-KR",
+                              option
+                            )}{" "}
+                            KRW
+                          </td>
+                        </tr>
+                        <ModalPopup
+                          title={title}
+                          show={selectedTr}
+                          close={closeModal}
+                          index={tableIndex}
+                          data={filteredData}
+                        />
+                      </>
+                    );
+                  }
+                })}
+              </tbody>
+            </table>
+          )}
         </div>
       </center>
     </div>

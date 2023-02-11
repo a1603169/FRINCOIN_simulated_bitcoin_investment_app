@@ -94,12 +94,12 @@ function CoinsDetailsPage() {
     <div className={classes.table_Outer_Container}>
       <div className={classes.filter_Container}>
         <div className={classes.btns_Container}>
-          <button className={classes.category_Btn}>KRW MARKET</button>
-          <button className={classes.category_Btn}>BTC MARKET</button>
-          <button className={classes.category_Btn}>MY COINS</button>
-          <button className={classes.category_Btn}>FAVOURITES</button>
+          {/* <button className={classes.category_Btn}>KRW MARKET</button>
+          <button className={classes.category_Btn}>BTC MARKET</button> */}
+          {/* <button className={classes.category_Btn}>MY COINS</button> */}
         </div>
         <div className={classes.btns_Container}>
+          <button className={classes.category_Btn}>FAVOURITES</button>
           <button className={classes.category_Btn}>MAJOR</button>
           <button className={classes.category_Btn}>GENERAL</button>
           <button className={classes.category_Btn}>NEW</button>
@@ -236,6 +236,7 @@ function CoinsDetailsPage() {
                     </>
                   );
                 }
+                if (filteredData.length) return <div></div>;
               })}
             </tbody>
           </table>

@@ -4,8 +4,11 @@ function ContactUsPage() {
   return (
     <div className={classes.contact_container}>
       <div className={classes.contact_sub_container}>
-        <h1 className={classes.contact_title}> DUMMY TITLE</h1>
-        <p className={classes.contact_description}> DUMMY DESCRIPTION</p>
+        <h1 className={classes.contact_title}> WE ARE HERE </h1>
+        <p className={classes.contact_description}>
+          {" "}
+          Please contact us to update or fix
+        </p>
         <div>
           {/* Classnames should be defined properly */}
           <div className={classes.contact_icons}>
@@ -33,7 +36,6 @@ function ContactUsPage() {
           </div>
         </div>
       </div>
-      <div className={classes.contact_sub_container}>HELLLOOO</div>
     </div>
   );
 }

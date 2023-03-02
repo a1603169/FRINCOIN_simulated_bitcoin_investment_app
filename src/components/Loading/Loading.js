@@ -1,16 +1,10 @@
-import Typist from "react-typist";
-
-function Loading() {
+const Loading = () => {
   return (
-    <div>
-      <Typist>
-        {/* <span>Loading</span> */}
-        <p>Hi</p>
-        {/* <Typist.Backspace count={5} delay={5000} />
-        <span>HI</span> */}
-      </Typist>
+    <div className="spinner-container">
+      <div className="spinner">d</div>
+      <p>Loading...</p>
     </div>
   );
-}
+};
 
 export default Loading;

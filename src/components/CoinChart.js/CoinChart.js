@@ -1,30 +1,46 @@
+import axios from "axios";
 import { useState, useEffect } from "react";
 import { LineChart, Line, XAxis, YAxis, Tooltip } from "recharts";
 
-function CoinChart() {
+function CoinChart({ title }) {
   const [data, setData] = useState([]);
+  const [krData, setKrData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const tempURL = `http://192.168.35.151:8080/cryptos/price/${title}/1/m`;
+  const krURL = `https://api.bithumb.com/public/ticker/${title}_KRW`;
+
+  // console.log(title);
+  // set the request's mode to 'no-cors' and 'access-control-allow-origin' to make the request CORS-passthrough.
+  const options = {
+    mode: "no-cors",
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+    },
+  };
 
   useEffect(() => {
-    fetch("https://api.bithumb.com/public/ticker/BTC_KRW")
-      .then((response) => response.json())
-      .then((data) => {
-        // 데이터를 배열로 변환하여 최근 10개의 데이터 포인트만 유지
-        const chartData = Object.entries(data.data)
-          .map(([key, value]) => ({ time: key, price: value.closing_price }))
-          .slice(0, 10);
-        setData(chartData);
-        console.log(chartData);
-      });
-    console.log(data);
-  }, []);
+    const fetchData = async () => {
+      const result = await axios.get(tempURL, options);
+      setData(result.data);
+    };
+    fetchData();
+    setIsLoading(false);
+  }, [data]);
 
   return (
-    <LineChart width={600} height={300} data={data}>
-      <XAxis dataKey="time" />
-      <YAxis />
-      <Tooltip />
-      <Line type="monotone" dataKey="price" stroke="#8884d8" />
-    </LineChart>
+    <>
+      <div>
+        {data.result.price.map((price) => {
+          return <p>{price}</p>;
+        })}
+      </div>
+      <LineChart width={600} height={300} data={data}>
+        <XAxis dataKey="time" />
+        <YAxis />
+        <Tooltip />
+        <Line type="monotone" dataKey="price" stroke="#8884d8" />
+      </LineChart>
+    </>
   );
 }
 

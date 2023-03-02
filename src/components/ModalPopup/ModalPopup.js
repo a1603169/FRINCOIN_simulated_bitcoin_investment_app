@@ -161,7 +161,7 @@ function ModalPopup({ title, show, close, index, data }) {
             <span>{title}</span>
           </span>
           <div className={classes.modal_popup_body}>
-            <CoinChart selectedCoinData={title} />
+            <CoinChart title={title} />
           </div>
           <div className={classes.modal_popup_close_button}>
             <AiFillCloseSquare onClick={close} />

@@ -6,9 +6,19 @@ import classes from "./Header.module.css";
 import useWindowDimensions from "../../CustomHooks/getWindowDimensions";
 
 function Header() {
+  const [isLogin, setIsLogin] = useState(false);
   const [isWide, setIsWide] = useState(true);
   const [btnActive, setBtnActive] = useState(true);
   const { width } = useWindowDimensions();
+
+  // get the token from api
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   if (token) {
+  //     setIsLogin(true);
+  //   }
+  // }, []);
+
   useEffect(() => {
     if (width <= 954) {
       setIsWide(false);

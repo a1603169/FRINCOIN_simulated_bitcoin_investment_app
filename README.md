@@ -8,7 +8,7 @@
 </hr>
 <div align="left">
   <h2>현재 상태 - Current Status</h2>
-  <p>제작중입니다 4/1/2022 ~</p>
+  <p>제작중입니다 4/1/2023 ~</p>
 </div>
 </hr>
 <div align="left">
